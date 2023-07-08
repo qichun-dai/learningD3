@@ -20,7 +20,8 @@ async function drawForce() {
     const force = d3.forceSimulation()
         .nodes(dataset.nodes)
         .force("link", d3.forceLink().id(d => d.id).links(dataset.links))
-        .force("charge", d3.forceManyBody())
+        .force("charge", d3.forceManyBody().strength(function(d) { return -d.group*40; }))
+        //added strength
         .force("center", d3.forceCenter(width / 2, height / 2))
 
     const link = svg.selectAll(".link")
@@ -32,11 +33,14 @@ async function drawForce() {
         .data(dataset.nodes)
         .enter().append("circle")
         .attr("class", "node")
-        .attr("r", 5)
+        .attr("class",d => d.team)
+        .attr("r", d => (4-d.group)*7.5)
         .call(d3.drag()
         .on("start", dragstarted)
         .on("drag", dragged)
         .on("end", dragended))
+
+    console.log(node)
         
     node.append("title")
         .text(d => d.first_name +" "+d.last_name )

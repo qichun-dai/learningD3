@@ -1,6 +1,6 @@
 {
   "nodes": [
-    {"id": 1, "first_name":  "Albus", "last_name": "Dumbledore", "team":  "Head Master", "group":  1},
+    {"id": 1, "first_name":  "Albus", "last_name": "Dumbledore", "team":  "Head_Master", "group":  1},
     {"id": 2, "first_name":  "Minerva", "last_name": "McGonagall", "team":  "Gryffindor", "group":  2},
     {"id": 3, "first_name":  "Pomona", "last_name": "Sprout", "team":  "Hufflepuff", "group":  2},
     {"id": 4, "first_name":  "Filius", "last_name": "Flitwick", "team":  "Ravenclaw", "group":  2},
