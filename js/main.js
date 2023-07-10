@@ -16,10 +16,31 @@ async function drawForce() {
         .attr("width", width)
         .attr("height", height)
 
+    const defs= svg.append("defs")
+        
+        
+    defs.selectAll("pattern")
+        .data(dataset.nodes)
+        .enter()
+        .append("pattern") 
+        .attr("id", d => d.id)
+        .attr("width", "100%")    // set width and height of pattern
+        .attr("height", "100%")
+        .append('image')
+        .attr("xlink:href", d => "./img/img" + d.id +".jpeg")
+        .attr("width", "1")      // set width and height of image
+        .attr("height", "1")
+        .attr("preserveAspectRatio", "none")
+
+    
+    console.log(defs)
+
 
     const force = d3.forceSimulation()
         .nodes(dataset.nodes)
-        .force("link", d3.forceLink().id(d => d.id).links(dataset.links))
+        .force("link", d3.forceLink()
+        .id(d => d.id)
+        .links(dataset.links))
         .force("charge", d3.forceManyBody().strength(function(d) { return -d.group*40; }))
         //added strength
         .force("center", d3.forceCenter(width / 2, height / 2))
@@ -31,7 +52,8 @@ async function drawForce() {
 
     const node = svg.selectAll(".node")
         .data(dataset.nodes)
-        .enter().append("circle")
+        .enter()
+        .append("circle")
         .attr("class",d => d.team)
         .attr("id", d => `node_${d.id}`)
         .attr("r", d => (4-d.group)*7.5)
@@ -45,18 +67,21 @@ async function drawForce() {
 
     function mouseOver(event,d) { 
         // to see what are the first and second argument
-        console.log(event, d, this)
 
         d3.select(`#node_${d.id}`)
-            .attr("r", 30)
-        console.log(node.select(`#node_${d.id}`))
+            .style("fill", d => `url(#${d.id})`)
+            .attr("r", 100)
+
+        console.log(d => `url(#${d.id})`)
+
     }
 
     function mouseOut(event,d) { 
-    console.log(event,d)
 
     d3.select(`#node_${d.id}`)
         .attr("r", i => (4-i.group)*7.5)
+        .style("fill", "")
+
     }
 
     node.append("title")
