@@ -28,8 +28,8 @@ async function drawForce() {
         .attr("height", "100%")
         .append('image')
         .attr("xlink:href", d => "./img/img" + d.id +".jpeg")
-        .attr("width", "1")      // set width and height of image
-        .attr("height", "1")
+        .attr("width", "30")      // set width and height of image
+        .attr("height", "30")
         .attr("preserveAspectRatio", "none")
 
     
