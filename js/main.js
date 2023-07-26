@@ -9,6 +9,25 @@ async function drawForce() {
     console.log(dataset.nodes)
     console.log(dataset.links)
 
+    for (let i = 0; i < dataset.nodes.length; i++) {
+        const item = dataset.nodes[i]
+        console.log(item)
+        
+        // Add a new column to each item
+        if (item.team == 'Head_Master') {
+          item.colorHex = '#000'
+        } else if(item.team == 'Gryffindor'){
+          item.colorHex = '#DC143C'
+        }else if(item.team == 'Hufflepuff'){
+          item.colorHex ='#FFFF00'
+        }
+        else if(item.team == 'Ravenclaw'){
+          item.colorHex = '#0000CD'
+        }else {
+          item.colorHex = '#228B22'
+        }
+      }
+
     const width = 900
     const height = 600
 
@@ -28,8 +47,8 @@ async function drawForce() {
         .attr("height", "100%")
         .append('image')
         .attr("xlink:href", d => "./img/img" + d.id +".jpeg")
-        .attr("width", "30")      // set width and height of image
-        .attr("height", "30")
+        .attr("width", "50")      // set width and height of image
+        .attr("height", "50")
         .attr("preserveAspectRatio", "none")
 
     
@@ -57,6 +76,7 @@ async function drawForce() {
         .attr("class",d => d.team)
         .attr("id", d => `node_${d.id}`)
         .attr("r", d => (4-d.group)*7.5)
+        .attr("fill", d => d.colorHex)
         // add mouse event
         .on('mouseover', (event,d) => mouseOver(event,d))
         .on('mouseout', (event,d) => mouseOut(event,d))
@@ -66,21 +86,17 @@ async function drawForce() {
         .on("end", dragended))
 
     function mouseOver(event,d) { 
-        // to see what are the first and second argument
-
         d3.select(`#node_${d.id}`)
-            .style("fill", d => `url(#${d.id})`)
-            .attr("r", 100)
-
-        console.log(d => `url(#${d.id})`)
-
+            .attr("fill", d => `url(#${d.id})`)
+            .attr("r", 25)
     }
 
     function mouseOut(event,d) { 
 
     d3.select(`#node_${d.id}`)
         .attr("r", i => (4-i.group)*7.5)
-        .style("fill", "")
+        .attr("fill", d => d.colorHex)
+        
 
     }
 

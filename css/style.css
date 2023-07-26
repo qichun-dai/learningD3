@@ -21,34 +21,34 @@ svg {
 }
 
 .Head_Master{
-	fill:#000;
+	/* fill:#000; */
 	stroke: #fff;
 	stroke-width: 2px;
 
 }
 
 .Gryffindor{
-	fill:#DC143C;
+	/* fill:#DC143C; */
 	stroke: #FFD700;
 	stroke-width: 2px;
 }
 
 .Hufflepuff{
-	fill:#FFFF00;
+	/* fill:#FFFF00; */
 	stroke: #000000;
 	stroke-width: 2px;
 
 }
 
 .Ravenclaw{
-	fill:#0000CD;
+	/* fill:#0000CD; */
 	stroke: #CD7F32;
 	stroke-width: 2px;
 
 }
 
 .Slytherin{
-	fill:#228B22;
+	/* fill:#228B22; */
 	stroke: #C0C0C0;
 	stroke-width: 2px;
 
