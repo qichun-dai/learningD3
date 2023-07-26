@@ -89,6 +89,7 @@ async function drawForce() {
         d3.select(`#node_${d.id}`)
             .attr("fill", d => `url(#${d.id})`)
             .attr("r", 25)
+            .raise()
     }
 
     function mouseOut(event,d) { 
@@ -96,8 +97,6 @@ async function drawForce() {
     d3.select(`#node_${d.id}`)
         .attr("r", i => (4-i.group)*7.5)
         .attr("fill", d => d.colorHex)
-        
-
     }
 
     node.append("title")
